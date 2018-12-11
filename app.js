@@ -51,11 +51,29 @@ class UI
                 <p>${tareas[i].descripcion}</p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-danger">Eliminar</button>
+                <button class="btn btn-danger" onclick="ui.eliminarTarea('${tareas[i].titulo}')">Eliminar</button>
             </div>
             `;
             listaTareas.appendChild(elemento);
         }
+    }
+
+    eliminarTarea(titulo)
+    {
+        if(confirm('¿Deseas ELIMINAR la tarea?'))
+        {
+            var tareas = JSON.parse(localStorage.getItem('tareas'));
+            for(var i=0;i<tareas.length;i++)
+            {
+                if(tareas[i].titulo == titulo)
+                {
+                    tareas.splice(i,1);
+                }
+            } 
+            localStorage.setItem('tareas',JSON.stringify(tareas));
+            this.obtenerTareas();
+        }
+        
     }
 }
 
@@ -71,6 +89,7 @@ document.getElementById('formTarea').addEventListener('submit',function(e){
 
     ui.agregarTarea(tareas);
 
-
-
 })
+
+const ui = new UI();
+ui.obtenerTareas();

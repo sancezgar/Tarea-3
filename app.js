@@ -23,6 +23,7 @@ class UI
             tareas.push(tarea);
             localStorage.setItem('tareas',JSON.stringify(tareas));
         }
+        this.mostrarMensaje('Se agrego exitosamente la tárea','success');
         this.obtenerTareas();
         this.limpiarForm();
     }
@@ -71,9 +72,26 @@ class UI
                 }
             } 
             localStorage.setItem('tareas',JSON.stringify(tareas));
+            this.mostrarMensaje('Se Eliminó exitosanente la tarea','primary');
             this.obtenerTareas();
         }
-        
+    }
+
+    mostrarMensaje(mensaje,clase)
+    {
+        var cuerpo = document.querySelector('#cuerpo');
+        var app = document.querySelector('#app');
+
+        var div = document.createElement('div');
+        div.className = `alert alert-${clase} fixed-top`;
+        div.appendChild(document.createTextNode(mensaje));
+
+        cuerpo.insertBefore(div,app);
+
+        setTimeout(function(){
+            document.querySelector('.alert').remove();
+        },2000);
+
     }
 }
 

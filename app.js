@@ -52,6 +52,7 @@ class UI
                 <p>${tareas[i].descripcion}</p>
             </div>
             <div class="card-footer">
+                <button class="btn btn-warning" onclick="ui.editaTarea('${tareas[i].titulo}')">Editar</button>
                 <button class="btn btn-danger" onclick="ui.eliminarTarea('${tareas[i].titulo}')">Eliminar</button>
             </div>
             `;
